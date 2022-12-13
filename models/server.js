@@ -9,6 +9,7 @@ class Server {
         this.app = express() // no es necesario const ya  que esta definido en el constructor
         this.port = process.env.PORT || 5000
         this.usuariosPath = '/api/usuarios';
+        this.authPath = '/api/auth';
         
         // connexion a base de datos
         this.conectarDB();
@@ -37,6 +38,7 @@ class Server {
     }
 
     routes() {
+        this.app.use(this.authPath, require('../routes/auth.routes'));
         this.app.use(this.usuariosPath, require('../routes/user.routes'));
     }
 

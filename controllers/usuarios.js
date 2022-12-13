@@ -62,9 +62,13 @@ const usuariosPatch = (req, res = response) => {
 }
 const usuariosDelete = async (req, res = response) => {
     const id = req.params.id;
+    const  usuarioAutenticado = req.usuario;
+
     const usuario = await Usuario.findByIdAndUpdate(id,{estado: false});
     res.json({
-        msg: 'delete Api - controller'
+        msg: 'delete Api - controller',
+        usuario,
+        usuarioAutenticado
     })
 }
 

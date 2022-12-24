@@ -28,7 +28,7 @@ const tieneRole = ( ...roles ) =>{
         }
     
         if ( !roles.includes(req.usuario.rol )) {
-            res.status('401').json({
+            return res.status(401).json({
                 msg: `Requiere uno de esto roles ${roles}.`
             })
         }

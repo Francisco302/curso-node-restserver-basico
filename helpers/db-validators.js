@@ -1,5 +1,7 @@
+const { Categoria } = require('../models');
 const Role = require('../models/role');
 const Usuario = require('../models/usuario');
+var mongoose = require('mongoose');
 
 
 const esRolValido = async (rol = '') => {
@@ -23,10 +25,27 @@ const existeUsuarioPorId = async(id = '') => {
         throw new Error(`El id ${id} ya no existe`);
     }
 }
+const existeCategoriaById = async(id = '') => {
+    const existeCategoria = await Categoria.findById(id);
+    //console.log(`id validator ${id}`);
+    if( !existeCategoria){
+        throw new Error(`El id ${id} ya no existe`);
+    }
+}
+
+const esIdValido = async (id = '') => {
+    //;
+    if(!mongoose.Types.isValid(id)){
+        throw new Error(`El id ${id} ya no existe`);
+    }
+}
+
+
 
 
 module.exports = {
     esRolValido,
     esEmailValido,
-    existeUsuarioPorId
+    existeUsuarioPorId,
+    existeCategoriaById
 }
